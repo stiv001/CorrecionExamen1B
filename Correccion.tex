@@ -1,0 +1,902 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+% Make \paragraph and \subparagraph free-standing
+\makeatletter
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}{
+    \@ifstar
+      \xxxParagraphStar
+      \xxxParagraphNoStar
+  }
+  \newcommand{\xxxParagraphStar}[1]{\oldparagraph*{#1}\mbox{}}
+  \newcommand{\xxxParagraphNoStar}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}{
+    \@ifstar
+      \xxxSubParagraphStar
+      \xxxSubParagraphNoStar
+  }
+  \newcommand{\xxxSubParagraphStar}[1]{\oldsubparagraph*{#1}\mbox{}}
+  \newcommand{\xxxSubParagraphNoStar}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+\makeatother
+
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{241,243,245}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.40,0.45,0.13}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\BuiltInTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\ExtensionTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.28,0.35,0.67}{#1}}
+\newcommand{\ImportTok}[1]{\textcolor[rgb]{0.00,0.46,0.62}{#1}}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.68,0.00,0.00}{#1}}
+\newcommand{\RegionMarkerTok}[1]{\textcolor[rgb]{0.00,0.23,0.31}{#1}}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.07,0.07,0.07}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.13,0.47,0.30}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.37,0.37,0.37}{\textit{#1}}}
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage{bookmark}
+
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Corrección de Examen},
+  pdfauthor={Tu Nombre},
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+
+\title{Corrección de Examen}
+\author{Tu Nombre}
+\date{2024-12-10}
+
+\begin{document}
+\maketitle
+
+
+\section{\texorpdfstring{\textbf{ESCUELA POLITECNICA
+NACIONAL}}{ESCUELA POLITECNICA NACIONAL}}\label{escuela-politecnica-nacional}
+
+\subsubsection{Nombre:Stiv Quishpe}\label{nombrestiv-quishpe}
+
+\subsubsection{Link al respositorio}\label{link-al-respositorio}
+
+https://github.com/stiv001/CorrecionExamen1B.git
+
+\section{Pregunta 1}\label{pregunta-1}
+
+Suponga que dos puntos ((x\_0, y\_0)) y ((x\_1, y\_1)) se encuentran en
+línea recta con (y\_1) no es igual a (y\_0).\\
+Existen dos fórmulas para encontrar la intersección (x) de la línea:
+
+\subsubsection{Método A:}\label{muxe9todo-a}
+
+\[
+x = \frac{y_0 x_1 - x_0 y_1}{y_1 - y_0}
+\]
+
+\subsubsection{Método B:}\label{muxe9todo-b}
+
+\[
+x = x_0 - \frac{(x_1 - x_0) y_0}{y_1 - y_0}
+\]
+
+Usando los datos ((x\_0, y\_0) = (1.31, 3.24)) y ((x\_1, y\_1) = (1.93,
+4.76)), determine el valor real de la intersección (x) (asumiendo
+redondeo a 6 cifras significativas):
+
+\begin{longtable}[]{@{}lll@{}}
+\toprule\noalign{}
+(X) & 1.31 & 1.93 \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+(y) & 3.24 & 4.76 \\
+\end{longtable}
+
+\paragraph{Método A:}\label{muxe9todo-a-1}
+
+\[
+x = \frac{3.24 \cdot 1.93 - 1.31 \cdot 4.76}{4.76 - 3.24}
+\] \[
+x = \frac{6.2532 - 6.2356}{1.52}
+\] \[
+x = \frac{0.0176}{1.52} = 0.0115789
+\]
+
+\paragraph{Método B:}\label{muxe9todo-b-1}
+
+\[
+x = 1.31 - \frac{(1.93 - 1.31) \cdot 3.24}{4.76 - 3.24}
+\] \[
+x = 1.31 - \frac{0.62 \cdot 3.24}{1.52}
+\] \[
+x = 1.31 - \frac{2.0088}{1.52}
+\] \[
+x = 1.31 - 1.321578947 = 0.0115789
+\]
+
+Los dos métodos dan el mismo valor para (x).
+
+\subsubsection{Usando aritmética de computadora con redondeo a 3 cifras
+significativas:}\label{usando-aritmuxe9tica-de-computadora-con-redondeo-a-3-cifras-significativas}
+
+\paragraph{Método A:}\label{muxe9todo-a-2}
+
+\[
+x = \frac{3.24 \cdot 1.93 - 1.31 \cdot 4.76}{4.76 - 3.24}
+\] \[
+x = \frac{6.25 - 6.22}{1.52} = 0.0197
+\]
+
+\textbf{Error relativo:}\\
+\[
+\text{error} = \frac{|0.0115789 - 0.0197|}{|0.0115789|} = 0.700
+\]
+
+\paragraph{Método B:}\label{muxe9todo-b-2}
+
+\[
+x = 1.31 - \frac{(1.93 - 1.31) \cdot 3.24}{4.76 - 3.24}
+\] \[
+x = 1.31 - 0.01 = 0.01
+\]
+
+\textbf{Error relativo:}\\
+\[
+\text{error} = \frac{|0.0115789 - 0.01|}{|0.0115789|} = 0.136
+\]
+
+El \textbf{método B} es más preciso debido a que utiliza menos
+operaciones aritméticas.
+
+\section{Pregunta 2}\label{pregunta-2}
+
+Los primeros tres términos diferentes a cero de la serie de Maclaurin
+para la función arcotangente son: \[
+x - \frac{1}{3}x^3 + \frac{1}{5}x^5
+\]
+
+Calcule el error relativo en las siguientes aproximaciones de (\pi)
+mediante el polinomio (en lugar del arcotangente).\\
+Asuma que (\pi = 3.14159).
+
+\subsection{Aproximación 1: 4 · arctan(1/2) + 4 ·
+arctan(1/3)}\label{aproximaciuxf3n-1-4-arctan12-4-arctan13}
+
+\[
+\pi^* = 4\left(\left[\frac{1}{2} - \frac{1}{3}\left(\frac{1}{2}\right)^3 + \frac{1}{5}\left(\frac{1}{2}\right)^5\right] + \left[\frac{1}{3} - \frac{1}{3}\left(\frac{1}{3}\right)^3 + \frac{1}{5}\left(\frac{1}{3}\right)^5\right]\right)
+\] \[
+\pi^* = 4\left(\frac{223}{480} + \frac{391}{1215}\right)
+\] \[
+\pi^* = 4\left(\frac{6115}{7776}\right) = \frac{6115}{1944} = 3.1456
+\]
+
+\textbf{Error relativo:} \[
+\text{error} = \frac{|3.14159 - 3.1456|}{3.14159} = 0.0013
+\]
+
+\subsection{Aproximación 2: 16 · arctan(1/5) - 4 ·
+arctan(1/239)}\label{aproximaciuxf3n-2-16-arctan15---4-arctan1239}
+
+\[
+\pi^* = 16\left(\frac{1}{5} - \frac{1}{3}\left(\frac{1}{5}\right)^3 + \frac{1}{5}\left(\frac{1}{5}\right)^5\right) - 4\left(\frac{1}{239} - \frac{1}{3}\left(\frac{1}{239}\right)^3 + \frac{1}{5}\left(\frac{1}{239}\right)^5\right)
+\] \[
+\pi^* = 16\left(\frac{9253}{46875}\right) - 4(0.004184076)
+\] \[
+\pi^* = 3.158357333 - 0.016736304 = 3.1416
+\]
+
+\textbf{Error relativo:} \[
+\text{error} = \frac{|3.14159 - 3.1416|}{3.14159} = 0.0000098
+\]
+
+\section{Pregunta 3}\label{pregunta-3}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ secant\_method(f, x0, x1, tol}\OperatorTok{=}\FloatTok{1e{-}6}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{100}\NormalTok{):}
+  
+\NormalTok{    x\_prev }\OperatorTok{=}\NormalTok{ x0}
+\NormalTok{    x\_curr }\OperatorTok{=}\NormalTok{ x1}
+\NormalTok{    iter\_count }\OperatorTok{=} \DecValTok{0}
+\NormalTok{    f\_x\_prev }\OperatorTok{=}\NormalTok{ f(x\_prev)}
+\NormalTok{    f\_x\_curr }\OperatorTok{=}\NormalTok{ f(x\_curr)}
+
+    \ControlFlowTok{while} \BuiltInTok{abs}\NormalTok{(f\_x\_curr) }\OperatorTok{\textgreater{}}\NormalTok{ tol }\KeywordTok{and}\NormalTok{ iter\_count }\OperatorTok{\textless{}}\NormalTok{ max\_iter:}
+        \CommentTok{\# Verifica que no haya división por cero}
+        \ControlFlowTok{if}\NormalTok{ f\_x\_curr }\OperatorTok{==}\NormalTok{ f\_x\_prev:}
+            \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}\StringTok{"División por cero: f(x\_curr) y f(x\_prev) son iguales."}\NormalTok{)}
+        
+        \CommentTok{\# Calcula el siguiente punto}
+\NormalTok{        x\_next }\OperatorTok{=}\NormalTok{ x\_curr }\OperatorTok{{-}}\NormalTok{ f\_x\_curr }\OperatorTok{*}\NormalTok{ (x\_curr }\OperatorTok{{-}}\NormalTok{ x\_prev) }\OperatorTok{/}\NormalTok{ (f\_x\_curr }\OperatorTok{{-}}\NormalTok{ f\_x\_prev)}
+        
+        \CommentTok{\# Actualiza las variables para la próxima iteración}
+\NormalTok{        x\_prev, f\_x\_prev }\OperatorTok{=}\NormalTok{ x\_curr, f\_x\_curr}
+\NormalTok{        x\_curr, f\_x\_curr }\OperatorTok{=}\NormalTok{ x\_next, f(x\_next)}
+        
+\NormalTok{        iter\_count }\OperatorTok{+=} \DecValTok{1}
+
+    \ControlFlowTok{if} \BuiltInTok{abs}\NormalTok{(f\_x\_curr) }\OperatorTok{\textless{}=}\NormalTok{ tol:}
+        \ControlFlowTok{return}\NormalTok{ x\_curr, iter\_count}
+    \ControlFlowTok{else}\NormalTok{:}
+        \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}\StringTok{"El método no convergió en el número máximo de iteraciones."}\NormalTok{)}
+
+\end{Highlighting}
+\end{Shaded}
+
+\section{Ejemplo1}\label{ejemplo1}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i }\OperatorTok{=} \DecValTok{0}
+
+\KeywordTok{def}\NormalTok{ func(x):}
+    \KeywordTok{global}\NormalTok{ i}
+\NormalTok{    i }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{    y }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{3} \OperatorTok{{-}} \DecValTok{3} \OperatorTok{*}\NormalTok{ x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ x }\OperatorTok{{-}} \DecValTok{1}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Llamada i=}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\CharTok{\textbackslash{}t}\SpecialStringTok{ x=}\SpecialCharTok{\{}\NormalTok{x}\SpecialCharTok{:.5f\}}\CharTok{\textbackslash{}t}\SpecialStringTok{ y=}\SpecialCharTok{\{}\NormalTok{y}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ y}
+
+
+\NormalTok{secant\_method(func, x0}\OperatorTok{=}\DecValTok{2}\NormalTok{, x1}\OperatorTok{=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Llamada i=1  x=2.00000   y=-3.00
+Llamada i=2  x=3.00000   y=2.00
+Llamada i=3  x=2.60000   y=-1.10
+Llamada i=4  x=2.74227   y=-0.20
+Llamada i=5  x=2.77296   y=0.03
+Llamada i=6  x=2.76922   y=-0.00
+Llamada i=7  x=2.76929   y=-0.00
+Llamada i=8  x=2.76929   y=0.00
+\end{verbatim}
+
+\begin{verbatim}
+(2.7692923542484045, 6)
+\end{verbatim}
+
+\section{Ejemplo2}\label{ejemplo2}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{i }\OperatorTok{=} \DecValTok{0}
+\ImportTok{import}\NormalTok{ math}
+
+\KeywordTok{def}\NormalTok{ func(x):}
+    \KeywordTok{global}\NormalTok{ i}
+\NormalTok{    i }\OperatorTok{+=} \DecValTok{1}
+\NormalTok{    y }\OperatorTok{=}\NormalTok{ math.sin(x) }\OperatorTok{+} \FloatTok{0.5}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Llamada i=}\SpecialCharTok{\{}\NormalTok{i}\SpecialCharTok{\}}\CharTok{\textbackslash{}t}\SpecialStringTok{ x=}\SpecialCharTok{\{}\NormalTok{x}\SpecialCharTok{:.5f\}}\CharTok{\textbackslash{}t}\SpecialStringTok{ y=}\SpecialCharTok{\{}\NormalTok{y}\SpecialCharTok{:.2f\}}\SpecialStringTok{"}\NormalTok{)}
+    \ControlFlowTok{return}\NormalTok{ y}
+
+
+\NormalTok{secant\_method(func, x0}\OperatorTok{=}\DecValTok{2}\NormalTok{, x1}\OperatorTok{=}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Llamada i=1  x=2.00000   y=1.41
+Llamada i=2  x=3.00000   y=0.64
+Llamada i=3  x=3.83460   y=-0.14
+Llamada i=4  x=3.68602   y=-0.02
+Llamada i=5  x=3.66399   y=0.00
+Llamada i=6  x=3.66520   y=-0.00
+Llamada i=7  x=3.66519   y=-0.00
+\end{verbatim}
+
+\begin{verbatim}
+(3.66519143172732, 5)
+\end{verbatim}
+
+\section{Pregunta 4}\label{pregunta-4}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ImportTok{import}\NormalTok{ math}
+
+\KeywordTok{def}\NormalTok{ bisection\_method(f, a, b, tol}\OperatorTok{=}\FloatTok{1e{-}6}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{100}\NormalTok{):}
+    \ControlFlowTok{if}\NormalTok{ f(a) }\OperatorTok{*}\NormalTok{ f(b) }\OperatorTok{\textgreater{}} \DecValTok{0}\NormalTok{:}
+        \ControlFlowTok{raise} \PreprocessorTok{ValueError}\NormalTok{(}\StringTok{"El intervalo no tiene cambio de signo."}\NormalTok{)}
+
+\NormalTok{    iter\_count }\OperatorTok{=} \DecValTok{0}
+    \ControlFlowTok{while}\NormalTok{ (b }\OperatorTok{{-}}\NormalTok{ a) }\OperatorTok{/} \DecValTok{2} \OperatorTok{\textgreater{}}\NormalTok{ tol }\KeywordTok{and}\NormalTok{ iter\_count }\OperatorTok{\textless{}}\NormalTok{ max\_iter:}
+\NormalTok{        c }\OperatorTok{=}\NormalTok{ (a }\OperatorTok{+}\NormalTok{ b) }\OperatorTok{/} \DecValTok{2}
+        \ControlFlowTok{if}\NormalTok{ f(c) }\OperatorTok{==} \DecValTok{0}\NormalTok{:  }\CommentTok{\# Raíz exacta encontrada}
+            \ControlFlowTok{return}\NormalTok{ c}
+        \ControlFlowTok{elif}\NormalTok{ f(a) }\OperatorTok{*}\NormalTok{ f(c) }\OperatorTok{\textless{}} \DecValTok{0}\NormalTok{:}
+\NormalTok{            b }\OperatorTok{=}\NormalTok{ c}
+        \ControlFlowTok{else}\NormalTok{:}
+\NormalTok{            a }\OperatorTok{=}\NormalTok{ c}
+\NormalTok{        iter\_count }\OperatorTok{+=} \DecValTok{1}
+
+    \ControlFlowTok{return}\NormalTok{ (a }\OperatorTok{+}\NormalTok{ b) }\OperatorTok{/} \DecValTok{2}
+
+\KeywordTok{def}\NormalTok{ f(x):}
+    \ControlFlowTok{return}\NormalTok{ math.sin(x)}
+
+\NormalTok{intervals }\OperatorTok{=}\NormalTok{ [}
+\NormalTok{    (}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{),     }
+\NormalTok{    (}\OperatorTok{{-}}\DecValTok{5}\NormalTok{, }\DecValTok{4}\NormalTok{),      }
+\NormalTok{    (}\OperatorTok{{-}}\FloatTok{2.5}\NormalTok{, }\OperatorTok{{-}}\DecValTok{1}\NormalTok{),   }
+\NormalTok{    (}\OperatorTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{),     }
+\NormalTok{    (}\DecValTok{3}\NormalTok{, }\DecValTok{5}\NormalTok{),       }
+\NormalTok{    (}\OperatorTok{{-}}\FloatTok{3.5}\NormalTok{, }\DecValTok{3}\NormalTok{),    }
+\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{ a, b }\KeywordTok{in}\NormalTok{ intervals:}
+    \ControlFlowTok{try}\NormalTok{:}
+\NormalTok{        root }\OperatorTok{=}\NormalTok{ bisection\_method(f, a, b)}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Intervalo [}\SpecialCharTok{\{}\NormalTok{a}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{b}\SpecialCharTok{\}}\SpecialStringTok{]: Raíz encontrada ≈ }\SpecialCharTok{\{}\NormalTok{root}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+    \ControlFlowTok{except} \PreprocessorTok{ValueError} \ImportTok{as}\NormalTok{ e:}
+        \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"Intervalo [}\SpecialCharTok{\{}\NormalTok{a}\SpecialCharTok{\}}\SpecialStringTok{, }\SpecialCharTok{\{}\NormalTok{b}\SpecialCharTok{\}}\SpecialStringTok{]: }\SpecialCharTok{\{}\NormalTok{e}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+Intervalo [-1, 2]: Raíz encontrada ≈ -2.384185791015625e-07
+Intervalo [-5, 4]: Raíz encontrada ≈ -3.14159232378006
+Intervalo [-2.5, -1]: El intervalo no tiene cambio de signo.
+Intervalo [-4, 5]: Raíz encontrada ≈ 3.14159232378006
+Intervalo [3, 5]: Raíz encontrada ≈ 3.1415929794311523
+Intervalo [-3.5, 3]: El intervalo no tiene cambio de signo.
+\end{verbatim}
+
+\section{Pregunta 5}\label{pregunta-5}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{def}\NormalTok{ newton\_method(f, df, x0, tol}\OperatorTok{=}\FloatTok{1e{-}6}\NormalTok{, max\_iter}\OperatorTok{=}\DecValTok{100}\NormalTok{):}
+\NormalTok{    iter\_count }\OperatorTok{=} \DecValTok{0}
+\NormalTok{    x\_curr }\OperatorTok{=}\NormalTok{ x0}
+
+    \ControlFlowTok{while}\NormalTok{ iter\_count }\OperatorTok{\textless{}}\NormalTok{ max\_iter:}
+\NormalTok{        f\_x }\OperatorTok{=}\NormalTok{ f(x\_curr)}
+\NormalTok{        df\_x }\OperatorTok{=}\NormalTok{ df(x\_curr)}
+        
+        \ControlFlowTok{if} \BuiltInTok{abs}\NormalTok{(df\_x) }\OperatorTok{\textless{}} \FloatTok{1e{-}12}\NormalTok{:}
+            \ControlFlowTok{return} \StringTok{"Error (división por 0)"}
+
+\NormalTok{        x\_next }\OperatorTok{=}\NormalTok{ x\_curr }\OperatorTok{{-}}\NormalTok{ f\_x }\OperatorTok{/}\NormalTok{ df\_x}
+        
+        \ControlFlowTok{if} \BuiltInTok{abs}\NormalTok{(x\_next }\OperatorTok{{-}}\NormalTok{ x\_curr) }\OperatorTok{\textless{}}\NormalTok{ tol:}
+            \ControlFlowTok{return}\NormalTok{ x\_next, iter\_count }\OperatorTok{+} \DecValTok{1}
+
+\NormalTok{        x\_curr }\OperatorTok{=}\NormalTok{ x\_next}
+\NormalTok{        iter\_count }\OperatorTok{+=} \DecValTok{1}
+
+    \ControlFlowTok{return} \StringTok{"Error (diverge u oscila)"}
+
+\KeywordTok{def}\NormalTok{ f(x):}
+    \ControlFlowTok{return}\NormalTok{ x}\OperatorTok{**}\DecValTok{3} \OperatorTok{+}\NormalTok{ x }\OperatorTok{{-}}\NormalTok{ (}\DecValTok{1} \OperatorTok{+} \DecValTok{3}\OperatorTok{*}\NormalTok{x}\OperatorTok{**}\DecValTok{2}\NormalTok{)}
+
+\KeywordTok{def}\NormalTok{ df(x):}
+    \ControlFlowTok{return} \DecValTok{3}\OperatorTok{*}\NormalTok{x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{1} \OperatorTok{{-}} \DecValTok{6}\OperatorTok{*}\NormalTok{x}
+
+\NormalTok{initial\_values }\OperatorTok{=}\NormalTok{ [}\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1} \OperatorTok{+}\NormalTok{ (}\DecValTok{6}\OperatorTok{**}\FloatTok{0.5}\NormalTok{)}\OperatorTok{/}\DecValTok{3}\NormalTok{]}
+
+\ControlFlowTok{for}\NormalTok{ x0 }\KeywordTok{in}\NormalTok{ initial\_values:}
+\NormalTok{    result }\OperatorTok{=}\NormalTok{ newton\_method(f, df, x0)}
+    \BuiltInTok{print}\NormalTok{(}\SpecialStringTok{f"x0 = }\SpecialCharTok{\{}\NormalTok{x0}\SpecialCharTok{:.4f\}}\SpecialStringTok{ {-}\textgreater{} Resultado: }\SpecialCharTok{\{}\NormalTok{result}\SpecialCharTok{\}}\SpecialStringTok{"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+x0 = 3.0000 -> Resultado: (2.7692923542387, 4)
+x0 = 1.0000 -> Resultado: Error (diverge u oscila)
+x0 = 0.0000 -> Resultado: Error (diverge u oscila)
+x0 = 1.8165 -> Resultado: Error (división por 0)
+\end{verbatim}
+
+\section{Resolviendo el problema matemáticamente usando el método de
+Newton-Raphson}\label{resolviendo-el-problema-matemuxe1ticamente-usando-el-muxe9todo-de-newton-raphson}
+
+El \textbf{método de Newton-Raphson} se basa en la siguiente fórmula:
+
+\$ x\_\{n+1\} = x\_n - \frac{f(x_n)}{f'(x_n)} \$
+
+En este caso, tenemos la función:
+
+\$ f(x) = x\^{}3 + x - (1 + 3x\^{}2) \$
+
+\subsection{1. Derivar la función f(x)}\label{derivar-la-funciuxf3n-fx}
+
+Para aplicar el método de Newton, necesitamos la derivada de f(x) :
+
+\$ f'(x) = 3x\^{}2 + 1 - 6x \$
+
+\subsection{2. Procedimiento de
+iteración}\label{procedimiento-de-iteraciuxf3n}
+
+Para calcular la raíz, iteramos usando la fórmula:
+
+\$ x\_\{n+1\} = x\_n - \frac{f(x_n)}{f'(x_n)} \$
+
+donde \$ x\_0 \$ es el valor inicial.
+
+\subsubsection{Ejemplo de cálculos con diferentes valores
+iniciales:}\label{ejemplo-de-cuxe1lculos-con-diferentes-valores-iniciales}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Si ( x\_0 = 3 ):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    \$ f(3) = 3\^{}3 + 3 - (1 + 3 \cdot 3\^{}2) = 27 + 3 - 28 = 2 \$
+  \item
+    \$ f'(3) = 3 \cdot 3\^{}2 + 1 - 6 \cdot 3 = 27 + 1 - 18 = 10 \$
+  \item
+    Primera iteración: \$ x\_1 = 3 - \frac{2}{10} = 2.8 \$
+  \item
+    Continuamos hasta que el error sea menor que la tolerancia
+    \(( \text{tol} = 10^{-6} )\).
+  \end{itemize}
+\item
+  \textbf{Si ( x\_0 = 1 ):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Calculamos ( f(1) ) y ( f'(1) ): \$ f(1) = 1\^{}3 + 1 - (1 + 3
+    \cdot 1\^{}2) = 1 + 1 - 4 = -2 \$ \$ f'(1) = 3 \cdot 1\^{}2 + 1 - 6
+    \cdot 1 = 3 + 1 - 6 = -2 \$
+  \item
+    Primera iteración: \$ x\_1 = 1 - \frac{-2}{-2} = 1 \$
+  \item
+    El método no converge, ya que se repite el mismo valor.
+  \end{itemize}
+\item
+  \textbf{Si ( x\_0 = 0 ):}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Calculamos ( f(0) ) y ( f'(0) ): \$ f(0) = 0\^{}3 + 0 - (1 + 3
+    \cdot 0\^{}2) = -1 \$ \$ f'(0) = 3 \cdot 0\^{}2 + 1 - 6 \cdot 0 = 1
+    \$
+  \item
+    Primera iteración: \$ x\_1 = 0 - \frac{-1}{1} = 1 \$
+  \item
+    El método no converge, ya que oscila.
+  \end{itemize}
+\item
+  \textbf{Si \$ x\_0 = 1 + \sqrt{6}/3 \$:}
+
+  \begin{itemize}
+  \tightlist
+  \item
+    f'(x) en este punto es ( 0 ), lo que produce una división por cero.
+    El método falla.
+  \end{itemize}
+\end{enumerate}
+
+\subsection{3. Conclusión}\label{conclusiuxf3n}
+
+\begin{itemize}
+\tightlist
+\item
+  Para \$x\_0 = 3 \$, el método converge a \$ x\_\{\text{sol}\} =
+  2.76929 \$.
+\item
+  Para \$ x\_0 = 1\$y \$ x\_0 = 0 \$, el método diverge o oscila.
+\item
+  Para \$ x\_0 = 1 + \sqrt{6}/3 \$, ocurre un error de división por
+  cero.
+\end{itemize}
+
+\section{Pregunta 6}\label{pregunta-6}
+
+\subsection{Resolución del Spline Cúbico
+Natural}\label{resoluciuxf3n-del-spline-cuxfabico-natural}
+
+\subsubsection{Problema:}\label{problema}
+
+Se deben calcular los coeficientes del spline cúbico ( S\_0(x) ) para
+los puntos ((-1, 1)) y ((1, 3)), teniendo en cuenta las derivadas: - (
+f'(x\_0) = 1 ) - ( f'(x\_n) = 2 )
+
+El spline cúbico tiene la forma general:
+
+{[} S\_0(x) = a(x - x\_0)\^{}3 + b(x - x\_0)\^{}2 + c(x - x\_0) + d {]}
+
+Donde los coeficientes ( a, b, c, d ) se determinan a partir de las
+condiciones dadas.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{1. Condiciones Iniciales}\label{condiciones-iniciales}
+
+Para ( S\_0(x) ) que pase por ((-1, 1)) y ((1, 3)):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Paso por el primer punto ((-1, 1)):} {[} S\_0(-1) = 1 {]}
+  Sustituyendo en la ecuación del spline: {[} a(0)\^{}3 + b(0)\^{}2 +
+  c(0) + d = 1 {]} Por lo tanto, ( d = 1 )
+\item
+  \textbf{Condición en el segundo punto ((1, 3)):} {[} S\_0(1) = 3 {]}
+  Al sustituir en la ecuación del spline, obtenemos: {[} a(2)\^{}3 +
+  b(2)\^{}2 + c(2) + d = 3 {]} Sabemos que ( d = 1 ), por lo tanto: {[}
+  8a + 4b + 2c + 1 = 3 {]} Restando 1 de ambos lados: {[} 8a + 4b + 2c =
+  2 {]}
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsubsection{2. Derivadas en los
+extremos}\label{derivadas-en-los-extremos}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{En el punto inicial (( x = -1 )):} {[} S\_0'(-1) = 1 {]}
+  Derivando el spline: {[} S\_0'(x) = 3a(x - x\_0)\^{}2 + 2b(x - x\_0) +
+  c {]} Evaluando en ( x = -1 ): {[} S\_0'(-1) = 3a(0)\^{}2 + 2b(0) + c
+  = 1 {]} Por lo tanto, ( c = 1 )
+\item
+  \textbf{En el punto final (( x = 1 )):} {[} S\_0'(1) = 2 {]}
+  Evaluando: {[} S\_0'(1) = 3a(2)\^{}2 + 2b(2) + c {]} Como ( c = 1 ):
+  {[} 12a + 4b + 1 = 2 {]} Restando 1 de ambos lados: {[} 12a + 4b = 1
+  {]}
+\end{enumerate}
+
+\section{Pregunta 7}\label{pregunta-7}
+
+\section{Interpolación de Lagrange}\label{interpolaciuxf3n-de-lagrange}
+
+\subsection{Fórmula de Interpolación de
+Lagrange}\label{fuxf3rmula-de-interpolaciuxf3n-de-lagrange}
+
+La interpolación de un conjunto de puntos usando polinomios de Lagrange
+( P(x) ) se expresa mediante la siguiente fórmula:
+
+\$ P(x) = \sum\_\{k=0\}\^{}\{n\} f(x\_k) L\_k(x) \$
+
+Donde:
+
+\$ L\_k(x) = \prod\_\{\substack{i=0 \\ i \neq k}\}\^{}\{n\}
+\frac{x - x_i}{x_k - x_i} \$
+
+\subsubsection{Dado los puntos:}\label{dado-los-puntos}
+
+\$ (0, 0), \quad (1, 1), \quad (2, 2), \quad (3, 3) \$
+
+Para estos puntos, tenemos ( n = 3 ) ya que hay 4 puntos en total, y los
+valores de ( f(x\_k) ) son iguales a ( x\_k ), es decir, ( f(x\_0) = 0
+), ( f(x\_1) = 1 ), ( f(x\_2) = 2 ), y ( f(x\_3) = 3 ).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Paso 1: Cálculo de los polinomios ( L\_k(x)
+)}\label{paso-1-cuxe1lculo-de-los-polinomios-l_kx}
+
+Los polinomios \$ L\_k(x) \$ se calculan de la siguiente manera:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Para \$ k = 0 \(:\) L\_0(x) =
+  \frac{(x - 1)(x - 2)(x - 3)}{(0 - 1)(0 - 2)(0 - 3)} =
+  \frac{(x - 1)(x - 2)(x - 3)}{-6} \$ Simplificando: \$ L\_0(x) =
+  \frac{-(x - 1)(x - 2)(x - 3)}{6} \$
+\item
+  Para ( k = 1 ): \$ L\_1(x) =
+  \frac{(x - 0)(x - 2)(x - 3)}{(1 - 0)(1 - 2)(1 - 3)} =
+  \frac{x(x - 2)(x - 3)}{2} \$ Simplificando: \$ L\_1(x) =
+  \frac{x(x - 2)(x - 3)}{2} \$
+\item
+  Para k = 2 : \$ L\_2(x) =
+  \frac{(x - 0)(x - 1)(x - 3)}{(2 - 0)(2 - 1)(2 - 3)} =
+  \frac{x(x - 1)(x - 3)}{2} \$ Simplificando: \$ L\_2(x) =
+  \frac{x(x - 1)(x - 3)}{2} \$
+\item
+  Para k = 3 : \$ L\_3(x) =
+  \frac{(x - 0)(x - 1)(x - 2)}{(3 - 0)(3 - 1)(3 - 2)} =
+  \frac{x(x - 1)(x - 2)}{6} \$ Simplificando: \$ L\_3(x) =
+  \frac{x(x - 1)(x - 2)}{6} \$
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Paso 2: Construcción del Polinomio de Lagrange ( P(x)
+)}\label{paso-2-construcciuxf3n-del-polinomio-de-lagrange-px}
+
+El polinomio de interpolación de Lagrange es:
+
+\$ P(x) = f(x\_0) L\_0(x) + f(x\_1) L\_1(x) + f(x\_2) L\_2(x) + f(x\_3)
+L\_3(x) \$
+
+Sustituyendo los valores ( f(x\_k) ) en la fórmula:
+
+\$ P(x) = 0 \cdot L\_0(x) + 1 \cdot L\_1(x) + 2 \cdot L\_2(x) + 3
+\cdot L\_3(x) \$
+
+\$ P(x) = L\_1(x) + 2L\_2(x) + 3L\_3(x) \$ Sustituyendo las expresiones
+de ( L\_1(x) ), ( L\_2(x) ), y ( L\_3(x) ):
+
+\$ P(x) = \frac{x(x - 2)(x - 3)}{2} + 2 \cdot \frac{x(x - 1)(x - 3)}{2}
++ 3 \cdot \frac{x(x - 1)(x - 2)}{6} \$
+
+Simplificando:
+
+\$ P(x) = \frac{x(x - 2)(x - 3)}{2} + \frac{2x(x - 1)(x - 3)}{2} +
+\frac{3x(x - 1)(x - 2)}{6} \$
+
+Multiplicando por 6 para eliminar denominadores:
+
+\$ P(x) = \frac{3x(x - 2)(x - 3)}{6} + 6x(x - 1)(x - 3) + x(x - 1)(x -
+2) \$
+
+Finalmente, combinamos y simplificamos los términos para obtener el
+polinomio completo.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Paso 3: Evaluación del
+Polinomio}\label{paso-3-evaluaciuxf3n-del-polinomio}
+
+\subsubsection{1. Evaluando P(3.78) :}\label{evaluando-p3.78}
+
+Sustituimos x = 3.78 en el polinomio P(x) :
+
+\$ P(3.78) = \frac{3(3.78)(3.78 - 2)(3.78 - 3)}{6} + 6(3.78)(3.78 -
+1)(3.78 - 3) + (3.78)(3.78 - 1)(3.78 - 2) \$
+
+\subsubsection{2. Evaluando P(19.102) :}\label{evaluando-p19.102}
+
+Sustituimos x = 19.102 en el polinomio P(x) :
+
+\$ P(19.102) = \frac{3(19.102)(19.102 - 2)(19.102 - 3)}{6} +
+6(19.102)(19.102 - 1)(19.102 - 3) + (19.102)(19.102 - 1)(19.102 - 2) \$
+
+\section{Pregunta 8}\label{pregunta-8}
+
+\subsection{Resolución del Problema de Splines
+Cúbicos}\label{resoluciuxf3n-del-problema-de-splines-cuxfabicos}
+
+\subsubsection{1. Modificación de los Splines para Cumplir con la
+Pendiente Deseada ( m ) en el Punto ( (x\_1, y\_1)
+):}\label{modificaciuxf3n-de-los-splines-para-cumplir-con-la-pendiente-deseada-m-en-el-punto-x_1-y_1}
+
+Para cumplir con el requisito de la pendiente ( m ) en ( x\_1 ), podemos
+modificar la condición de tangencia:
+
+{[} S'\_1(x\_1) = m {]}
+
+Esto significa que debemos ajustar los coeficientes ( b\_0 ) y ( b\_1 )
+de los splines para que se cumpla la condición de la derivada en el
+punto ( x\_1 ).
+
+\subsubsection{2. Condiciones Necesarias para la Existencia de una
+Solución:}\label{condiciones-necesarias-para-la-existencia-de-una-soluciuxf3n}
+
+Al trabajar con splines cúbicos, las condiciones para una solución única
+son las siguientes:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Condiciones de continuidad en las derivadas}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    ( S\_1(x\_1) = y\_1 )
+  \item
+    ( S'\_0(x\_1) = S'\_1(x\_1) ) (continuidad de la primera derivada en
+    ( x\_1 ))
+  \item
+    ( S'\,'\_0(x\_0) = 0 ) (condición de frontera en ( x\_0 ))
+  \item
+    ( S'\,'\_1(x\_2) = 0 ) (condición de frontera en ( x\_2 ))
+  \end{itemize}
+\end{itemize}
+
+Si deseamos que la pendiente en ( x\_1 ) sea ( m ), necesitamos
+modificar el sistema de ecuaciones para garantizar que ( S'\_1(x\_1) = m
+). Por lo tanto, la ecuación que debe modificarse es la de la
+\textbf{continuidad de la primera derivada} en ( x\_1 ):
+
+{[} S'\_0(x\_1) = S'\_1(x\_1) {]}
+
+\subsubsection{3. Ecuaciones del Spline:}\label{ecuaciones-del-spline}
+
+Dado los puntos ( (-1, 1) ), ( (0, 5) ), ( (1, 3) ), tenemos que
+encontrar los splines correspondientes.
+
+\paragraph{Para ( S\_0(x) ):}\label{para-s_0x}
+
+La forma general de ( S\_0(x) ) es:
+
+{[} S\_0(x) = a\_0 + b\_0(x - x\_0) + c\_0(x - x\_0)\^{}2 + d\_0(x -
+x\_0)\^{}3 {]}
+
+Sustituyendo ( x\_0 = -1 ), ( y\_0 = 1 ) y utilizando ( m = -3 )
+(suponiendo del gráfico), obtenemos los coeficientes de ( S\_0(x) ).
+
+\paragraph{Para ( S\_1(x) ):}\label{para-s_1x}
+
+La forma general de ( S\_1(x) ) es:
+
+{[} S\_1(x) = a\_1 + b\_1(x - x\_1) + c\_1(x - x\_1)\^{}2 + d\_1(x -
+x\_1)\^{}3 {]}
+
+Donde ( x\_1 = 0 ), ( y\_1 = 5 ), y la pendiente deseada ( m = -3 ).
+
+\subsubsection{4. Solución:}\label{soluciuxf3n}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Spline ( S\_0(x) )}:
+\end{itemize}
+
+{[} S\_0(x) = -3(x + 1)\^{}2 + 7(x + 1) + 1 {]}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Spline ( S\_1(x) )}:
+\end{itemize}
+
+{[} S\_1(x) = -3x\^{}2 + x + 5 {]}
+
+
+
+
+\end{document}
